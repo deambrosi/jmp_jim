@@ -54,7 +54,7 @@ function params = SetParameters(dims, overrides)
     end
 
     %% Preferences
-    params.bbeta    = 0.996315;         % Discount factor
+    params.bbeta    = 0.95;         % Discount factor
     params.ssigma   = 2.00;             % Risk aversion
     params.CONS     = 1e2;              % Value function scaling constant
 
@@ -66,18 +66,18 @@ function params = SetParameters(dims, overrides)
     params.ca       = 3;                % Curvature for coarse grid
     
     % Amenity bounds (for utility scaling)
-    params.lb_am    = 0.3;              % Lower bound on amenity multiplier
-    params.ub_am    = 5;              % Upper bound on amenity multiplier
+    params.lb_am    = 1;              % Lower bound on amenity multiplier
+    params.ub_am    = 3.5;              % Upper bound on amenity multiplier
     
     % Productivity bounds (for wage calculation)
     params.lb_pr    = 1.2;              % Lower bound on productivity
-    params.ub_pr    = 2.9;                % Upper bound on productivity
+    params.ub_pr    = 2.5;                % Upper bound on productivity
 
     %% Location-specific features [N×1 vectors]
     
-    params.A        = [0.5; 1.2; 3.8; 6.5]; % [N×1] Productivity by location
-    params.bbi      = 0.5 * params.A;   % [N×1] Unemployment benefits (80% of productivity)
-    params.B        = [1.5; 1.4; 1.0; 0.85]; % [N×1] Amenity levels
+    params.A        = [0.7; 1.2; 3.5; 7.5]; % [N×1] Productivity by location
+    params.bbi      = 0.4 * params.A;    % [N×1] Unemployment benefits (50% of productivity)
+    params.B        = [1.3; 1.3; 1.0; 1.00]; % [N×1] Amenity levels
     
     % Job-finding probability bounds by location
     params.f0       = [0.8; 0.6; 0.60; 0.60];  % [N×1] Minimum job-finding probability
@@ -89,19 +89,19 @@ function params = SetParameters(dims, overrides)
 
     %% Migration cost primitives
     
-    params.tilde_ttau = [2; 3.5; 12];         % [N-1×1] Transport costs between adjacent locations
-    params.hat_ttau   = [3; 0.5; 3.5; 6];     % [N×1] Fixed entry costs by destination
-    params.aalpha     = 0.50;               % Help discount factor
+    params.tilde_ttau = [2; 3.5; 11.4];         % [N-1×1] Transport costs between adjacent locations
+    params.hat_ttau   = [3; 0.8; 3.2; 7.8];     % [N×1] Fixed entry costs by destination
+    params.aalpha     = 0.95;               % Help discount factor
     params.nnu        = 0.1;                % Scale of idiosyncratic location shocks
 
     %% Network parameters
     
-    params.ggamma   = 0.60;             % Elasticity of help probability w.r.t. stock
-    params.cchi     = 0.22;             % Probability of losing network ties
+    params.ggamma   = 0.40;             % Elasticity of help probability w.r.t. stock
+    params.cchi     = 0.11;             % Probability of losing network ties
 
     %% Markov transition parameters
     
-    params.baseUp_psi = 0.08;           % Base upward transition probability for integration
+    params.baseUp_psi = 0.10;           % Base upward transition probability for integration
     topDiff           = 1;              % Difficulty parameter for reaching high integration
 
     %% Apply user-provided overrides
